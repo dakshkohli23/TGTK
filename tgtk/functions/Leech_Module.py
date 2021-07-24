@@ -68,7 +68,7 @@ async def check_link(msg,rclone=False,is_zip=False, extract=False, prev_msg=None
     msg = await msg.get_reply_message()
 
     if extract:
-        mess = f"you chose to extract the archive <a href='tg://user?id={omess.sender_id}'>enter password if any.</a>\n use <code>/setpass {omess.id} password-here</code>"
+        mess = f"You chose to extract the archive <a href='tg://user?id={omess.sender_id}'>Enter password if any.</a>\n use <code>/setpass {omess.id} password-here</code>"
         omess.client.dl_passwords[omess.id] = [str(omess.sender_id), None]
         await omess.reply(mess, parse_mode="html")
 
@@ -82,7 +82,7 @@ async def check_link(msg,rclone=False,is_zip=False, extract=False, prev_msg=None
                 name = i.file_name
 
         if name is None:
-            await omess.reply("this isn't a torrent file to leech from. send <code>.torrent</code> file",parse_mode="html")
+            await omess.reply("This isn't a torrent file to leech from. send <code>.torrent</code> file",parse_mode="html")
         elif name.lower().endswith(".torrent"):
             rmess = await omess.reply("downloading the torrent file.")
 
