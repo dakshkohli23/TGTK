@@ -242,7 +242,7 @@ async def handle_leech_command(e):
                 [KeyboardButtonCallback("Extract from Archive. [Toggle]", data=f"leechzipex toggleex {tsp}")]
         )
         
-        conf_mes = await e.reply(f"First Click if you want to zip the contents or extract as an archive (only one will work at a time) Then...\n\n<b>Choose where to upload your files:</b>\nthe files will be uploaded to default destination: <b>{get_val('DEFAULT_TIMEOUT')}</b> after 60 sec of no action by user.</u>\n\n<b>supported archives to extract:</b>\nzip, 7z, tar, gzip2, iso, wim, rar, tar.gz, tar.bz2",parse_mode="html",buttons=buts)
+        conf_mes = await e.reply(f"ꜰɪʀꜱᴛ ᴄʟɪᴄᴋ ɪꜰ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴢɪᴘ ᴛʜᴇ ᴄᴏɴᴛᴇɴᴛꜱ ᴏʀ ᴇxᴛʀᴀᴄᴛ ᴀꜱ ᴀɴ ᴀʀᴄʜɪᴠᴇ (ᴏɴʟʏ ᴏɴᴇ ᴡɪʟʟ ᴡᴏʀᴋ ᴀᴛ ᴀ ᴛɪᴍᴇ) ᴛʜᴇɴ...\n\n<b>🗄️ ᴄʜᴏᴏꜱᴇ ᴡʜᴇʀᴇ ᴛᴏ ᴜᴘʟᴏᴀᴅ ʏᴏᴜʀ ꜰɪʟᴇꜱ:</b>\nᴛʜᴇ ꜰɪʟᴇꜱ ᴡɪʟʟ ʙᴇ ᴜᴘʟᴏᴀᴅᴇᴅ ᴛᴏ ᴅᴇꜰᴀᴜʟᴛ ᴅᴇꜱᴛɪɴᴀᴛɪᴏɴ: <b>{get_val('DEFAULT_TIMEOUT')}</b> ᴀꜰᴛᴇʀ 60 ꜱᴇᴄ ᴏꜰ ɴᴏ ᴀᴄᴛɪᴏɴ ʙʏ ᴜꜱᴇʀ.</u>\n\n<b>📋 ꜱᴜᴘᴘᴏʀᴛᴇᴅ ᴀʀᴄʜɪᴠᴇꜱ ᴛᴏ ᴇxᴛʀᴀᴄᴛ:</b>\n`zip, 7z, tar, gzip2, iso, wim, rar, tar.gz, tar.bz2`",parse_mode="html",buttons=buts)
         
         # zip check in background
         ziplist = await get_zip_choice(e,tsp)
