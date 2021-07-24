@@ -223,23 +223,23 @@ def add_handlers(bot: TelegramClient):
 
 async def handle_leech_command(e):
     if not e.is_reply:
-        await e.reply("🧲 Reply to Link/Magnet")
+        await e.reply("🧲 ʀᴇᴘʟʏ ᴛᴏ ʟɪɴᴋ/ᴍᴀɢɴᴇᴛ")
     else:
         rclone = False
         tsp = time.time()
-        buts = [[KeyboardButtonCallback("To Telegram",data=f"leechselect tg {tsp}")]]
+        buts = [[KeyboardButtonCallback("📂 ᴛᴏ ᴛᴇʟᴇɢʀᴀᴍ",data=f"leechselect tg {tsp}")]]
         if await get_config() is not None:
             buts.append(
-                [KeyboardButtonCallback("To Drive",data=f"leechselect drive {tsp}")]
+                [KeyboardButtonCallback("☁️ ᴛᴏ ᴅʀɪᴠᴇ",data=f"leechselect drive {tsp}")]
             )
         # tsp is used to split the callbacks so that each download has its own callback
         # cuz at any time there are 10-20 callbacks linked for leeching XD
            
         buts.append(
-                [KeyboardButtonCallback("Upload in a ZIP. [Toggle]", data=f"leechzip toggle {tsp}")]
+                [KeyboardButtonCallback("🗜️ ᴜᴘʟᴏᴀᴅ ɪɴ ᴀ ᴢɪᴘ. [ᴛᴏɢɢʟᴇ]", data=f"leechzip toggle {tsp}")]
         )
         buts.append(
-                [KeyboardButtonCallback("Extract from Archive. [Toggle]", data=f"leechzipex toggleex {tsp}")]
+                [KeyboardButtonCallback("🗜️ ᴇxᴛʀᴀᴄᴛ ꜰʀᴏᴍ ᴀʀᴄʜɪᴠᴇ. [ᴛᴏɢɢʟᴇ]", data=f"leechzipex toggleex {tsp}")]
         )
         
         conf_mes = await e.reply(f"ꜰɪʀꜱᴛ ᴄʟɪᴄᴋ ɪꜰ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴢɪᴘ ᴛʜᴇ ᴄᴏɴᴛᴇɴᴛꜱ ᴏʀ ᴇxᴛʀᴀᴄᴛ ᴀꜱ ᴀɴ ᴀʀᴄʜɪᴠᴇ (ᴏɴʟʏ ᴏɴᴇ ᴡɪʟʟ ᴡᴏʀᴋ ᴀᴛ ᴀ ᴛɪᴍᴇ) ᴛʜᴇɴ...\n\n<b>🗄️ ᴄʜᴏᴏꜱᴇ ᴡʜᴇʀᴇ ᴛᴏ ᴜᴘʟᴏᴀᴅ ʏᴏᴜʀ ꜰɪʟᴇꜱ:</b>\nᴛʜᴇ ꜰɪʟᴇꜱ ᴡɪʟʟ ʙᴇ ᴜᴘʟᴏᴀᴅᴇᴅ ᴛᴏ ᴅᴇꜰᴀᴜʟᴛ ᴅᴇꜱᴛɪɴᴀᴛɪᴏɴ: <b>{get_val('DEFAULT_TIMEOUT')}</b> ᴀꜰᴛᴇʀ 60 ꜱᴇᴄ ᴏꜰ ɴᴏ ᴀᴄᴛɪᴏɴ ʙʏ ᴜꜱᴇʀ.</u>\n\n<b>📋 ꜱᴜᴘᴘᴏʀᴛᴇᴅ ᴀʀᴄʜɪᴠᴇꜱ ᴛᴏ ᴇxᴛʀᴀᴄᴛ:</b>\n`zip, 7z, tar, gzip2, iso, wim, rar, tar.gz, tar.bz2`",parse_mode="html",buttons=buts)
@@ -270,12 +270,12 @@ async def handle_leech_command(e):
             if get_val("RCLONE_ENABLED"):
                 await check_link(e,rclone, is_zip, is_ext)
             else:
-                await e.reply("<b>RClone is disabled by the Admin ⚡.</b>",parse_mode="html")
+                await e.reply("<b>ʀᴄʟᴏɴᴇ ɪꜱ ᴅɪꜱᴀʙʟᴇᴅ ʙʏ ᴛʜᴇ ᴀᴅᴍɪɴ ⚡.</b>",parse_mode="html")
         else:
             if get_val("LEECH_ENABLED"):
                 await check_link(e,rclone, is_zip, is_ext)
             else:
-                await e.reply("<b>TG Leech is disabled by the Admin ⚡.</b>",parse_mode="html")
+                await e.reply("<b>ᴛɢ ʟᴇᴇᴄʜ ɪꜱ ᴅɪꜱᴀʙʟᴇᴅ ʙʏ ᴛʜᴇ ᴀᴅᴍɪɴ ⚡.</b>",parse_mode="html")
 
 
 async def get_leech_choice(e,timestamp):
@@ -421,7 +421,7 @@ async def handle_settings_cb(e):
     if await is_admin(e.client,e.sender_id,e.chat_id):
         await handle_setting_callback(e)
     else:
-        await e.answer("⚠️ WARN ⚠️ Dont Touch Admin Settings.",alert=True)
+        await e.answer("⚠️ 𝐖𝐀𝐑𝐍 ⚠️ 𝐃𝐨𝐧𝐭 𝐓𝐨𝐮𝐜𝐡 𝐀𝐝𝐦𝐢𝐧 𝐒𝐞𝐭𝐭𝐢𝐧𝐠𝐬.",alert=True)
 
 async def handle_upcancel_cb(e):
     db = upload_db
@@ -432,12 +432,12 @@ async def handle_upcancel_cb(e):
 
     if str(e.sender_id) == data[3]:
         db.cancel_download(data[1],data[2])
-        await e.answer("✖️ Upload Cancel.",alert=True)
+        await e.answer("✖️ ᴜᴘʟᴏᴀᴅ ᴄᴀɴᴄᴇʟ.",alert=True)
     elif e.sender_id in get_val("ALD_USR"):
         db.cancel_download(data[1],data[2])
-        await e.answer("✖️ UPLOAD CANCELED IN ADMIN MODE⚡ ;)",alert=True)
+        await e.answer("✖️ ᴜᴘʟᴏᴀᴅ ᴄᴀɴᴄᴇʟᴇᴅ ɪɴ ᴀᴅᴍɪɴ ᴍᴏᴅᴇ⚡;)",alert=True)
     else:
-        await e.answer("☠️ Can't Cancel Other Uploads",alert=True)
+        await e.answer("☠️ ᴄᴀɴ'ᴛ ᴄᴀɴᴄᴇʟ ᴏᴛʜᴇʀ ᴜᴘʟᴏᴀᴅꜱ",alert=True)
 
 
 async def callback_handler_canc(e):
@@ -462,7 +462,7 @@ async def callback_handler_canc(e):
         torlog.info(f"Hashid :- {hashid}")
 
         await cancel_torrent(hashid, is_aria)
-        await e.answer("🚯 Torrent has been Cancelled",alert=True)
+        await e.answer("🚯 ᴛᴏʀʀᴇɴᴛ ʜᴀꜱ ʙᴇᴇɴ ᴄᴀɴᴄᴇʟʟᴇᴅ",alert=True)
     elif e.sender_id in get_val("ALD_USR"):
         hashid = data[1]
         hashid = hashid.strip("'")
@@ -470,9 +470,9 @@ async def callback_handler_canc(e):
         torlog.info(f"Hashid: {hashid}")
         
         await cancel_torrent(hashid, is_aria)
-        await e.answer("⚡ Torrent has been cancelled in ADMIN MODE",alert=True)
+        await e.answer("⚡ 𝐓𝐨𝐫𝐫𝐞𝐧𝐭 𝐡𝐚𝐬 𝐛𝐞𝐞𝐧 𝐜𝐚𝐧𝐜𝐞𝐥𝐥𝐞𝐝 𝐢𝐧 𝐀𝐃𝐌𝐈𝐍 𝐌𝐎𝐃𝐄",alert=True)
     else:
-        await e.answer("🤣 You can cancel only your torrent", alert=True)
+        await e.answer("🤣 ʏᴏᴜ ᴄᴀɴ ᴄᴀɴᴄᴇʟ ᴏɴʟʏ ʏᴏᴜʀ ᴛᴏʀʀᴇɴᴛ", alert=True)
 
 
 async def handle_exec_message_f(e):
@@ -519,7 +519,7 @@ async def handle_exec_message_f(e):
         else:
             await message.reply(OUTPUT)
     else:
-        await message.reply("Only for Owner!⚡")
+        await message.reply("𝐎𝐧𝐥𝐲 𝐟𝐨𝐫 𝐎𝐰𝐧𝐞𝐫!⚡")
 
 async def handle_pincode_cb(e):
     data = e.data.decode("UTF-8")
@@ -529,13 +529,13 @@ async def handle_pincode_cb(e):
         db = tor_db
         passw = db.get_password(data[1])
         if isinstance(passw,bool):
-            await e.answer("Torrent expired download has been started now.")
+            await e.answer("⏲️ ᴛᴏʀʀᴇɴᴛ ᴇxᴘɪʀᴇᴅ ᴅᴏᴡɴʟᴏᴀᴅ ʜᴀꜱ ʙᴇᴇɴ ꜱᴛᴀʀᴛᴇᴅ ɴᴏᴡ.")
         else:
-            await e.answer(f"Your Pincode is \"{passw}\"",alert=True)
+            await e.answer(f"🔑 ʏᴏᴜʀ ᴘɪɴᴄᴏᴅᴇ ɪꜱ \"{passw}\"",alert=True)
 
         
     else:
-        await e.answer("It's Not Your Torrent.",alert=True)
+        await e.answer("🙃 ɪᴛ'ꜱ ɴᴏᴛ ʏᴏᴜʀ ᴛᴏʀʀᴇɴᴛ.",alert=True)
 
 async def upload_document_f(message):
     if get_val("REST11"):
@@ -555,7 +555,7 @@ async def upload_document_f(message):
             )
             #torlog.info(recvd_response)
     else:
-        await message.reply("Only for Owner!⚡.")
+        await message.reply("𝐎𝐧𝐥𝐲 𝐟𝐨𝐫 𝐎𝐰𝐧𝐞𝐫!⚡.")
     await imsegd.delete()
 
 async def get_logs_f(e):
@@ -576,9 +576,9 @@ async def set_password_zip(message):
         print(passdata[0])
         if str(message.sender_id) == passdata[0]:
             message.client.dl_passwords[int(data[1])][1] = data[2]
-            await message.reply(f"☑️ Password updated successfully.")
+            await message.reply(f"☑️ ᴘᴀꜱꜱᴡᴏʀᴅ ᴜᴘᴅᴀᴛᴇᴅ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ!!!")
         else:
-            await message.reply(f"❎ Cannot update the password since this isn't your download.")
+            await message.reply(f"❎ ᴄᴀɴɴᴏᴛ ᴜᴘᴅᴀᴛᴇ ᴛʜᴇ ᴘᴀꜱꜱᴡᴏʀᴅ ꜱɪɴᴄᴇ ᴛʜɪꜱ ɪꜱɴ'ᴛ ʏᴏᴜʀ ᴅᴏᴡɴʟᴏᴀᴅ.")
 
 async def start_handler(event):
     msg = "TGTK - Telegram Leech Bot."
@@ -797,11 +797,11 @@ async def set_thumb_cmd(e):
     except:pass
 
     user_db.set_var("DISABLE_THUMBNAIL",False, str(e.sender_id))
-    await e.reply("✅ Thumbnail set. try using /usettings to get more control. Can be used in private too.")
+    await e.reply("✅ ᴛʜᴜᴍʙɴᴀɪʟ ꜱᴇᴛ. ᴛʀʏ ᴜꜱɪɴɢ /usettings ᴛᴏ ɢᴇᴛ ᴍᴏʀᴇ ᴄᴏɴᴛʀᴏʟ. ᴄᴀɴ ʙᴇ ᴜꜱᴇᴅ ɪɴ ᴘʀɪᴠᴀᴛᴇ ᴛᴏᴏ.")
 
 async def clear_thumb_cmd(e):
     user_db.set_var("DISABLE_THUMBNAIL",True, str(e.sender_id))
-    await e.reply("❎ Thumbnail disabled. Try using /usettings to get more control. Can be used in private too.")
+    await e.reply("❎ ᴛʜᴜᴍʙɴᴀɪʟ ᴅɪꜱᴀʙʟᴇᴅ. ᴛʀʏ ᴜꜱɪɴɢ /usettings ᴛᴏ ɢᴇᴛ ᴍᴏʀᴇ ᴄᴏɴᴛʀᴏʟ. ᴄᴀɴ ʙᴇ ᴜꜱᴇᴅ ɪɴ ᴘʀɪᴠᴀᴛᴇ ᴛᴏᴏ.")
 
 async def handle_user_settings_(message):
     if not message.sender_id in get_val("ALD_USR"):
@@ -815,7 +815,7 @@ def term_handler(signum, frame, client):
     async def term_async():
         omess = None
         st = Status().Tasks
-        msg = "Bot Rebooting... Re-Add your Tasks.\n\n"
+        msg = "🚀 ʙᴏᴛ ʀᴇʙᴏᴏᴛɪɴɢ... ʀᴇ-ᴀᴅᴅ ʏᴏᴜʀ ᴛᴀꜱᴋꜱ.\n\n"
         for i in st:
             if not await i.is_active():
                 continue
@@ -828,7 +828,7 @@ def term_handler(signum, frame, client):
                 chat_id = omess.chat_id
             
             sender = await i.get_sender_id()
-            msg += f"<a href='tg://user?id={sender}'>REBOOT...🧸</a> - <a href='https://t.me/c/{chat_id}/{omess.id}'>task</a>\n"
+            msg += f"<a href='tg://user?id={sender}'>🧸 ʀᴇʙᴏᴏᴛ...</a> - <a href='https://t.me/c/{chat_id}/{omess.id}'>ᴛᴀꜱᴋ</a>\n"
         
         if omess is not None:
             await omess.respond(msg, parse_mode="html")
@@ -840,7 +840,7 @@ async def booted(client):
     chats = get_val("ALD_USR")
     for i in chats:
         try:
-            await client.send_message(i, "⚡ Bot Booted Successfully!")
+            await client.send_message(i, "🤖 ʙᴏᴛ ɪꜱ ʟɪᴠᴇ")
         except Exception as e:
             torlog.info(f"Not found the entity {i}")
 
