@@ -71,7 +71,7 @@ async def add_torrent_magnet(magnet,message):
 
         if len(ext_res) > 0:
             torlog.info(f"this torrent is in list {ext_res} {magnet} {ext_hash}")
-            await message.edit("This torrent is alreaded in the leech list. 📃")
+            await message.edit("📃 ᴛʜɪꜱ ᴛᴏʀʀᴇɴᴛ ɪꜱ ᴀʟʀᴇᴀᴅᴇᴅ ɪɴ ᴛʜᴇ ʟᴇᴇᴄʜ ʟɪꜱᴛ 📃")
             return False
         # hot fix for the below issue
         savepath = os.path.join(os.getcwd(), "Downloads", str(time.time()).replace(".",""))
@@ -94,7 +94,7 @@ async def add_torrent_magnet(magnet,message):
                 if (datetime.now() - st).seconds >= 10:
                     torlog.warning("The provided torrent was not added and it was timed out. magnet was:- {}".format(magnet))
                     torlog.error(ext_hash)
-                    await message.edit("The torrent was not added due to an error.")
+                    await message.edit("☢️ ᴛʜᴇ ᴛᴏʀʀᴇɴᴛ ᴡᴀꜱ ɴᴏᴛ ᴀᴅᴅᴇᴅ ᴅᴜᴇ ᴛᴏ ᴀɴ ᴇʀʀᴏʀ.")
                     return False
                 # commenting in favour of wrong torrent getting returned
                 # ctor_new = client.torrents_info()
@@ -109,11 +109,11 @@ async def add_torrent_magnet(magnet,message):
                     return ext_res[0]
 
         else:
-            await message.edit("This is an unsupported/invalid link.")
+            await message.edit("⛔ ᴛʜɪꜱ ɪꜱ ᴀɴ ᴜɴꜱᴜᴘᴘᴏʀᴛᴇᴅ/ɪɴᴠᴀʟɪᴅ ʟɪɴᴋ.")
     except qba.UnsupportedMediaType415Error as e:
         #will not be used ever ;)
-        torlog.error("Unsupported file was detected in the magnet here")
-        await message.edit("This is an unsupported/invalid link.")
+        torlog.error("⛔ ᴜɴꜱᴜᴘᴘᴏʀᴛᴇᴅ ꜰɪʟᴇ ᴡᴀꜱ ᴅᴇᴛᴇᴄᴛᴇᴅ ɪɴ ᴛʜᴇ ᴍᴀɢɴᴇᴛ ʜᴇʀᴇ 🧲")
+        await message.edit("⛔ ᴛʜɪꜱ ɪꜱ ᴀɴ ᴜɴꜱᴜᴘᴘᴏʀᴛᴇᴅ/ɪɴᴠᴀʟɪᴅ ʟɪɴᴋ.")
         return False
     except Exception as e:
         torlog.error("{}\n{}".format(e,traceback.format_exc()))
@@ -134,7 +134,7 @@ async def add_torrent_file(path,message):
 
         if len(ext_res) > 0:
             torlog.info(f"this torrent is in list {ext_res} {path} {ext_hash}")
-            await message.edit("This torrent is alreaded in the leech list. 📃")
+            await message.edit("📃 ᴛʜɪꜱ ᴛᴏʀʀᴇɴᴛ ɪꜱ ᴀʟʀᴇᴀᴅᴇᴅ ɪɴ ᴛʜᴇ ʟᴇᴇᴄʜ ʟɪꜱᴛ 📃")
             return False
         
         # hot fix for the below issue
@@ -171,11 +171,11 @@ async def add_torrent_file(path,message):
                     return ext_res[0]
 
         else:
-            await message.edit("This is an unsupported/invalid link.")
+            await message.edit("⛔ ᴛʜɪꜱ ɪꜱ ᴀɴ ᴜɴꜱᴜᴘᴘᴏʀᴛᴇᴅ/ɪɴᴠᴀʟɪᴅ ʟɪɴᴋ.")
     except qba.UnsupportedMediaType415Error as e:
         #will not be used ever ;)
-        torlog.error("Unsupported file was detected in the magnet here")
-        await message.edit("This is an unsupported/invalid link.")
+        torlog.error("⛔ ᴜɴꜱᴜᴘᴘᴏʀᴛᴇᴅ ꜰɪʟᴇ ᴡᴀꜱ ᴅᴇᴛᴇᴄᴛᴇᴅ ɪɴ ᴛʜᴇ ᴍᴀɢɴᴇᴛ ʜᴇʀᴇ 🧲")
+        await message.edit("⛔ ᴛʜɪꜱ ɪꜱ ᴀɴ ᴜɴꜱᴜᴘᴘᴏʀᴛᴇᴅ/ɪɴᴠᴀʟɪᴅ ʟɪɴᴋ.")
         return False
     except Exception as e:
         torlog.error("{}\n{}".format(e,traceback.format_exc()))
@@ -199,11 +199,11 @@ async def update_progress(client,message,torrent,task,except_retry=0,sleepsec=No
         else:
             task.cancel = True
             await task.set_inactive()
-            await message.edit("Torrent canceled ```{}``` ".format(torrent.name),buttons=None)
+            await message.edit("ᴛᴏʀʀᴇɴᴛ ᴄᴀɴᴄᴇʟᴇᴅ ```{}``` ".format(torrent.name),buttons=None)
             return True
         
         if tor_info.size > (get_val("MAX_TORRENT_SIZE") * 1024 * 1024 * 1024):
-            await message.edit("Torrent oversized max size is {}. Try adding again and choose less files to download.".format(get_val("MAX_TORRENT_SIZE")), buttons=None)
+            await message.edit("🛂 ᴛᴏʀʀᴇɴᴛ ᴏᴠᴇʀꜱɪᴢᴇᴅ ᴍᴀx ꜱɪᴢᴇ ɪꜱ {}. ᴛʀʏ ᴀᴅᴅɪɴɢ ᴀɢᴀɪɴ ᴀɴᴅ ᴄʜᴏᴏꜱᴇ ʟᴇꜱꜱ ꜰɪʟᴇꜱ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ.".format(get_val("MAX_TORRENT_SIZE")), buttons=None)
             await delete_this(tor_info.hash)
             return True
         try:
@@ -218,10 +218,10 @@ async def update_progress(client,message,torrent,task,except_retry=0,sleepsec=No
 
             if (is_meta and (time.time() - meta_time) > get_val("TOR_MAX_TOUT")):
                 
-                await message.edit("Torrent <code>{}</code> is DEAD. [Metadata Failed]".format(tor_info.name),buttons=None,parse_mode="html")
-                torlog.error("An torrent has no seeds clearing that torrent now. Torrent:- {} - {}".format(tor_info.hash,tor_info.name))
+                await message.edit("☠️ ᴛᴏʀʀᴇɴᴛ <code>{}</code> ɪꜱ ᴅᴇᴀᴅ. [❗ ᴍᴇᴛᴀᴅᴀᴛᴀ ꜰᴀɪʟᴇᴅ ❗]".format(tor_info.name),buttons=None,parse_mode="html")
+                torlog.error("🌱 ʏᴏᴜʀ ᴛᴏʀʀᴇɴᴛ ʜᴀꜱ ɴᴏ ꜱᴇᴇᴅꜱ ᴄʟᴇᴀʀɪɴɢ ᴛʜᴀᴛ ᴛᴏʀʀᴇɴᴛ ɴᴏᴡ. ᴛᴏʀʀᴇɴᴛ:- {} - {}".format(tor_info.hash,tor_info.name))
                 await delete_this(tor_info.hash)
-                await task.set_inactive("Torrent <code>{}</code> is DEAD. [Metadata Failed]".format(tor_info.name))
+                await task.set_inactive("☠️ ᴛᴏʀʀᴇɴᴛ <code>{}</code> ɪꜱ ᴅᴇᴀᴅ. [❗ ᴍᴇᴛᴀᴅᴀᴛᴀ ꜰᴀɪʟᴇᴅ ❗]".format(tor_info.name))
                 
                 return False
 
