@@ -31,10 +31,10 @@ except:
         FORCE_DOCUMENTS = os.environ.get("FORCE_DOCUMENTS", "False")
 
         # Chracter to use as a completed progress 
-        COMPLETED_STR = os.environ.get("COMPLETED_STR", "⚉")
+        COMPLETED_STR = os.environ.get("COMPLETED_STR", "█")
 
         # Chracter to use as a incomplete progress
-        REMAINING_STR = os.environ.get("REMAINING_STR", "⚇")
+        REMAINING_STR = os.environ.get("REMAINING_STR", "▒")
 
         # DB URI for access
         DB_URI = os.environ.get("DATABASE_URL", "")
