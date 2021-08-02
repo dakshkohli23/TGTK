@@ -114,7 +114,7 @@ async def check_link(msg,rclone=False,is_zip=False, extract=False, prev_msg=None
                         rdict = await upload_handel(dl_path,rmess,omess.from_id,dict(),user_msg=omess,task=ul_task)
                     except:
                         rdict = dict()
-                        torlog.exception("exception in torrent file")
+                        torlog.exception("⁉️ Exception in Torrent File")
 
                     await ul_task.set_inactive()
                     await print_files(omess,rdict,dl_task.hash, path = dl_path, size=ul_size)
@@ -123,7 +123,7 @@ async def check_link(msg,rclone=False,is_zip=False, extract=False, prev_msg=None
                 else:
                     res = await rclone_driver(dl_path,rmess,omess, dl_task)
                     if res is None:
-                        await msg.reply("<b>upload to drive failed. check logs for more info./b>",parse_mode="html")
+                        await msg.reply("<b>☁️ Upload to Drive Failed. Check Logs for More Info./b>",parse_mode="html")
                     await QBittorrentWrap.delete_this(dl_task.hash)
 
             else:
@@ -133,11 +133,11 @@ async def check_link(msg,rclone=False,is_zip=False, extract=False, prev_msg=None
             await clear_stuff(dl_path)
             return dl_path
         else:
-            await omess.reply("this is not a torrent file to leech from. send <code>.torrent</code> file.",parse_mode="html")
+            await omess.reply("📢 This is not a Torrent File to Leech from. Send <code>.torrent</code> File.",parse_mode="html")
 
     elif msg.raw_text is not None:
         if msg.raw_text.lower().startswith("magnet:"):
-            rmess = await omess.reply("🔍 ꜱᴄᴀɴɴɪɴɢ...")
+            rmess = await omess.reply("🔍 Scanning...")
 
             mgt = get_magnets(msg.raw_text.strip())
             torrent_return = await QBittorrentWrap.register_torrent(mgt,rmess,omess,True)
@@ -167,18 +167,18 @@ async def check_link(msg,rclone=False,is_zip=False, extract=False, prev_msg=None
                         rdict = await upload_handel(dl_path,rmess,omess.from_id,dict(),user_msg=omess,task=ul_task)
                     except:
                         rdict = dict()
-                        torlog.exception("❕ ᴇxᴄᴇᴘᴛɪᴏɴ ɪɴ ᴍᴀɢɴᴇᴛ")
+                        torlog.exception("❕ Exception in Magnet")
 
                     await ul_task.set_inactive()
                     await print_files(omess,rdict,dl_task.hash, path = dl_path, size=ul_size)
 
-                    torlog.info("🗃️ ʜᴇʀᴇ ᴀʀᴇ ᴛʜᴇ ꜰɪʟᴇꜱ ᴛᴏ ʙᴇ ᴜᴘʟᴏᴀᴅᴇᴅ {}".format(rdict))
+                    torlog.info("🗃️ Here Are The Files To Be Uploaded {}".format(rdict))
                     await QBittorrentWrap.delete_this(dl_task.hash)
 
                 else:
                     res = await rclone_driver(dl_path,rmess,omess, dl_task)
                     if res is None:
-                        await msg.reply("<b>☁️ ᴜᴘʟᴏᴀᴅ ᴛᴏ ᴅʀɪᴠᴇ ꜰᴀɪʟᴇᴅ. ᴄʜᴇᴄᴋ ʟᴏɢꜱ ꜰᴏʀ ᴍᴏʀᴇ ɪɴꜰᴏ./b>",parse_mode="html")
+                        await msg.reply("<b>☁️ Upload to Drive Failed. Check Logs for More Info./b>",parse_mode="html")
                     await QBittorrentWrap.delete_this(dl_task.hash)
             else:
                 await errored_message(omess, rmess)
@@ -186,7 +186,7 @@ async def check_link(msg,rclone=False,is_zip=False, extract=False, prev_msg=None
             await clear_stuff(dl_path)
 
         elif msg.raw_text.lower().endswith(".torrent"):
-            rmess = await omess.reply("📥 ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ ᴛʜᴇ ᴛᴏʀʀᴇɴᴛ ꜰɪʟᴇ.")
+            rmess = await omess.reply("📥 Downloading The Torrent File.")
 
             # TODO do something to de register the torrents - done
             path = ""
@@ -235,7 +235,7 @@ async def check_link(msg,rclone=False,is_zip=False, extract=False, prev_msg=None
                 else:
                     res = await rclone_driver(dl_path,rmess,omess, dl_task)
                     if res is None:
-                        await msg.reply("<b>☁️ ᴜᴘʟᴏᴀᴅ ᴛᴏ ᴅʀɪᴠᴇ ꜰᴀɪʟᴇᴅ. ᴄʜᴇᴄᴋ ʟᴏɢꜱ ꜰᴏʀ ᴍᴏʀᴇ ɪɴꜰᴏ.</b>",parse_mode="html")
+                        await msg.reply("<b>☁️ Upload to Drive Failed. Check Logs for More Info.</b>",parse_mode="html")
                     await QBittorrentWrap.delete_this(dl_task.hash)
             else:
                 await errored_message(omess, rmess)
@@ -247,8 +247,8 @@ async def check_link(msg,rclone=False,is_zip=False, extract=False, prev_msg=None
         else:
             urls = msg.raw_text
             url = msg.raw_text
-            torlog.info("Aria2 is downloading:\n{}".format(urls))
-            rmsg = await omess.reply("**processing the link...**")
+            torlog.info("🛰️ Aria2 is Downloading:\n{}".format(urls))
+            rmsg = await omess.reply("**⏳ Processing The Link...**")
             await aio.sleep(1)
 
             url = await generate_directs(urls)
@@ -259,7 +259,7 @@ async def check_link(msg,rclone=False,is_zip=False, extract=False, prev_msg=None
                     await errored_message(omess, rmsg)
                     return
                 else:
-                    await rmsg.edit(f"**Found directs:** `{url}`")
+                    await rmsg.edit(f"**Found Directs:** `{url}`")
                     await aio.sleep(2)
 
             re_name = None
