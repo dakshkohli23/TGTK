@@ -82,7 +82,7 @@ async def check_link(msg,rclone=False,is_zip=False, extract=False, prev_msg=None
                 name = i.file_name
 
         if name is None:
-            await omess.reply("This isn't a torrent file to leech from. send <code>.torrent</code> file",parse_mode="html")
+            await omess.reply("📢 This is not a Torrent File to Leech from. Send <code>.torrent</code> File.",parse_mode="html")
         elif name.lower().endswith(".torrent"):
             rmess = await omess.reply("💽 Downloading The Torrent File.")
 
