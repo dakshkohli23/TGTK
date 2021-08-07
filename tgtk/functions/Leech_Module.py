@@ -137,7 +137,7 @@ async def check_link(msg,rclone=False,is_zip=False, extract=False, prev_msg=None
 
     elif msg.raw_text is not None:
         if msg.raw_text.lower().startswith("magnet:"):
-            rmess = await omess.reply("<b>🔍 Scanning...</b>")
+            rmess = await omess.reply("**🔍 Scanning...**")
 
             mgt = get_magnets(msg.raw_text.strip())
             torrent_return = await QBittorrentWrap.register_torrent(mgt,rmess,omess,True)
@@ -186,7 +186,7 @@ async def check_link(msg,rclone=False,is_zip=False, extract=False, prev_msg=None
             await clear_stuff(dl_path)
 
         elif msg.raw_text.lower().endswith(".torrent"):
-            rmess = await omess.reply("<b>📥 Downloading The Torrent File.</b>")
+            rmess = await omess.reply("**📥 Downloading The Torrent File.**")
 
             # TODO do something to de register the torrents - done
             path = ""
